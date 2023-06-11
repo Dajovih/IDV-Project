@@ -2,8 +2,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerScreenWrap : MonoBehaviour {
-    [SerializeField] private Collider2D _left1; 
-    [SerializeField] private Collider2D _right1;
     [SerializeField] private GameObject _clone; 
     private bool _inCamera = true;  //Condición necesaria para cuando sale del portal y de la cámara
 
@@ -17,14 +15,14 @@ public class PlayerScreenWrap : MonoBehaviour {
             //Debug.Log("En cámara");
             _inCamera = true;
         }
-        if (collider == _left1) {  //Si se entra en el portal izquierdo, se activa el clon al otro lado
+        if (collider.gameObject.tag == "LeftPortal") {  //Si se entra en el portal izquierdo, se activa el clon al otro lado
             //Debug.Log(collider.gameObject.name);
             //Debug.Log("Left");
             _clone.SetActive(true);
             nPosition.x = nPosition.x + 20;
             _clone.transform.position = nPosition;  //Posición del clon 20 bloques a la derecha        
         } 
-        if (collider == _right1) { //Si se entra en el portal derecho, se activa el clon al otro lado
+        if (collider.gameObject.tag == "RightPortal") { //Si se entra en el portal derecho, se activa el clon al otro lado
             //Debug.Log(collider.gameObject.name);
             //Debug.Log("Right");
             _clone.SetActive(true);
@@ -38,7 +36,7 @@ public class PlayerScreenWrap : MonoBehaviour {
             _inCamera = false;
             //Debug.Log("Sale de la cámara");
         }
-        if (collider == _left1 || collider == _right1) {
+        if (collider.gameObject.tag == "LeftPortal" || collider.gameObject.tag == "RightPortal") {
             if (_inCamera) {    //Si permanecen en camara y salen de los portales, es porque el jugador principal no paso al otro lado
                 //Debug.Log("Sale del portal izquierdo pero está en cámara");
                 _clone.SetActive(false);
