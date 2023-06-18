@@ -1,12 +1,9 @@
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using System;
-using UnityEditor.Experimental.GraphView;
-using Unity.VisualScripting;
+using UnityEngine;
+using System.Collections.Generic;
 
 public class PlatformHole : MonoBehaviour {
-    //Estos son los parámetros de cuando se genera el primer hueco, cuando se empieza a mover y la velocidad de movimiento
+    //Estos son los parï¿½metros de cuando se genera el primer hueco, cuando se empieza a mover y la velocidad de movimiento
     [SerializeField] private float _movementVelocity;
     [SerializeField] private float _firstHoleStartTime;
     [SerializeField] private float _holeMovementStart;
@@ -33,8 +30,8 @@ public class PlatformHole : MonoBehaviour {
 
     private void Start()
     {
-        Invoke("HoleCreation", _firstHoleStartTime);    //Se invoca al segundo _firstsHoleStartTime el método hole creation, que crea huecos
-        InvokeRepeating("HoleMovement", _holeMovementStart, _movementVelocity); //Se invoca cada movementVelocity segundos el movimiento de los huecos. Es decir que está es la velocidad con la que se mueven
+        Invoke("HoleCreation", _firstHoleStartTime);    //Se invoca al segundo _firstsHoleStartTime el mï¿½todo hole creation, que crea huecos
+        InvokeRepeating("HoleMovement", _holeMovementStart, _movementVelocity); //Se invoca cada movementVelocity segundos el movimiento de los huecos. Es decir que estï¿½ es la velocidad con la que se mueven
     }
 
     private void HoleUpdate(List<int> hole) //Es necesario que el collider se vuelva trigger y que la imagen desaparezca para que parezca hueco
@@ -47,20 +44,20 @@ public class PlatformHole : MonoBehaviour {
 
     private void HoleCreation() 
     {
-        List<int> hole = new List<int>();   //Almacena información del hueco
+        List<int> hole = new List<int>();   //Almacena informaciï¿½n del hueco
         int nLevel, nPlatform, orientation; //Es necesario saber el nivel donde se encuentra el hueco, la plataforma donde se va a generar y la orientacion de movimiento (izquierda, derecha)
         while (true)
         {
             if (!_firstHole) { nLevel = 0; } else { nLevel = UnityEngine.Random.Range(0, _allLevels.Count); } //Si se trata del primer hueco, este se va a generar en el nivel 1, en caso contrario escoge aleatoriamente un nivel
             nPlatform = UnityEngine.Random.Range(1, _allLevels[nLevel].Count - 1);  //Se escoge aleatoriamente una plataforma
-            if (nPlatform == 1) { orientation = 1; } else if (nPlatform == 18) { orientation = -1;} else { orientation = (UnityEngine.Random.Range(0, 2) * 2) - 1; }    //Se esocge aleatoriamente una dirección. Si se trata de los extremos, se escogen direcciones hacia el centro
+            if (nPlatform == 1) { orientation = 1; } else if (nPlatform == 18) { orientation = -1;} else { orientation = (UnityEngine.Random.Range(0, 2) * 2) - 1; }    //Se escoge aleatoriamente una direcciï¿½n. Si se trata de los extremos, se escogen direcciones hacia el centro
             if (!_allLevels[nLevel][nPlatform].GetComponent<Collider2D>().isTrigger && !_allLevels[nLevel][nPlatform + orientation].GetComponent<Collider2D>().isTrigger) 
             {
                 break;  //Si las plataformas no son huecos se sale del ciclo, en caso contrario se buscan nuevas plataformas
             }
         }
         if (!_firstHole) { _firstHole = true; }
-        //Se guarda el nivel de la primera plataforma, la posición de la primera plataforma, el nivel de la segunda plataforma, la posición de la segunda plataforma, la orientación y un bool representado por 0  y 1 que indica 
+        //Se guarda el nivel de la primera plataforma, la posiciï¿½n de la primera plataforma, el nivel de la segunda plataforma, la posiciï¿½n de la segunda plataforma, la orientaciï¿½n y un bool representado por 0  y 1 que indica 
         //si ese hueco ya fue pasado
         hole.Add(nLevel);
         hole.Add(nPlatform);
@@ -76,13 +73,13 @@ public class PlatformHole : MonoBehaviour {
     private void HoleMovement() {
         //Por cada uno de los huecos se debe de hacer el movimiento
         foreach(List<int> hole in _holes) {
-            //El hueco más hacia el centro debe de volverse plataforma y los huecos se generan en los extremos
+            //El hueco mï¿½s hacia el centro debe de volverse plataforma y los huecos se generan en los extremos
             _allLevels[hole[0]][hole[1]].GetComponent<Collider2D>().isTrigger = false;
             _allLevels[hole[0]][hole[1]].GetComponent<SpriteRenderer>().enabled = true;
             hole[0] = hole[2];
             hole[1] = hole[3];
             hole[3] = hole[1] + hole[4];
-            //En los casos en que se obtenga 20 o -1 es porque hay un cambio de nivel. ´Si se obtiene -1 o 6 en las plataformas es porque se vuelve a empezar desde los niveles extremos
+            //En los casos en que se obtenga 20 o -1 es porque hay un cambio de nivel. ï¿½Si se obtiene -1 o 6 en las plataformas es porque se vuelve a empezar desde los niveles extremos
             if (hole[3] == 20) {
                 hole[3] = 0;
                 hole[2] = hole[2] + hole[4];

@@ -1,9 +1,9 @@
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
        
-    //Parámetros de salto y velocidad. Ajustarlo en interfaz
+    //Parï¿½metros de salto y velocidad. Ajustarlo en interfaz
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
 
@@ -17,10 +17,10 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void Update() {
-        float direction = Input.GetAxis("Horizontal"); //Obtener la direccion hacia la cual se está movimendo : (1,-1)
-        _body.velocity = new Vector2(_speed * direction, _body.velocity.y); //Aplicar desplazamiento en la coordenada x teniendo en cuenta la velocidad y dirección
+        float direction = Input.GetAxis("Horizontal"); //Obtener la direccion hacia la cual se estï¿½ movimendo : (1,-1)
+        _body.velocity = new Vector2(_speed * direction, _body.velocity.y); //Aplicar desplazamiento en la coordenada x teniendo en cuenta la velocidad y direcciï¿½n
 
-        if (direction > 0f) { //Voltear al jugador según la dirección hacia la cual se está moviendo
+        if (direction > 0f) { //Voltear al jugador segï¿½n la direcciï¿½n hacia la cual se estï¿½ moviendo
             transform.localScale = Vector3.one;
         } else if (direction < 0f) {
             transform.localScale = new Vector3(-1, 1, 1);
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void Jump() {
-        _body.velocity = new Vector2(_body.velocity.x, _jumpForce); //Cambia la coordenada en y según jumpForce
+        _body.velocity = new Vector2(_body.velocity.x, _jumpForce); //Cambia la coordenada en y segï¿½n jumpForce
         _inGround = false;
     }
 
