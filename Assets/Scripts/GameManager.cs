@@ -32,14 +32,14 @@ public class GameManager : MonoBehaviour
     {
         MainMenu();
 
-        //GameEvents.OnEnemyDeathEvent += OnEnemyDeath;
+        GameEvents.OnPointsChangeEvent += OnPointsChange;
         //GameEvents.OnLevelProgressEvent += OnLevelProgress;
     }
     
 
     private void OnDestroy()
     {
-        //GameEvents.OnEnemyDeathEvent -= OnEnemyDeath;
+        GameEvents.OnPointsChangeEvent -= OnPointsChange;
         //GameEvents.OnLevelProgressEvent -= OnLevelProgress;
     }
 
@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
         HandleMenu();
     }
 
-/* 
     public void GameOver()
     {
         Debug.Log("Game over");
@@ -72,7 +71,6 @@ public class GameManager : MonoBehaviour
         
         GameEvents.OnGameOverEvent?.Invoke(_score, _score > maxScore, _time, _level);
     }
- */
 
     void HandleMenu()
     {
@@ -103,17 +101,22 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         _time = Time.time;
-        //GameEvents.OnStartGameEvent?.Invoke();
+        GameEvents.OnStartGameEvent?.Invoke();
         //AudioManager.Instance.PlayMusic(AudioMusicType.Gameplay);
     }
 
-/* 
-    private void OnEnemyDeath(Enemy enemy, int points)
-    {
-        _score += points;
+ 
+    private void OnPointsChange(int points)
+    {   
+        if (_score + points < 0) {
+            _score = 0;
+        } else {
+            _score += points;
+        }
+        
         GameEvents.OnPlayerScoreChangeEvent?.Invoke(_score);
     }
-
+/*
     void OnLevelProgress(int level)
     {
         _level = level + 1;

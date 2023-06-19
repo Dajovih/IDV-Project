@@ -10,8 +10,6 @@ public class PlayerMovement : MonoBehaviour {
     private Rigidbody2D _body;
     private bool _inGround; //Para verificar que solo puede saltar si se encuentra en el suelo
 
-
-
     private void Awake() {
         _body = GetComponent<Rigidbody2D>();
     }
@@ -41,6 +39,5 @@ public class PlayerMovement : MonoBehaviour {
             _inGround = true;
         }
 
-    }   
-
+    }
 }

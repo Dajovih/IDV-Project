@@ -14,7 +14,7 @@ public class PlatformHole : MonoBehaviour {
 
     private void Awake()
     {
-        NewPlatformReached.onNewPlatform += HoleCreation;
+        GameEvents.onNewPlatformEvent += HoleCreation;
         _allLevels = new List<List<GameObject>>();
         _holes = new List<List<int>>();
         foreach (Transform level in transform) //Por cada hijo level en el Empty Object Platforms

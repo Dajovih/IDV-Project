@@ -2,10 +2,11 @@ using System;
 using UnityEngine;
 
 public class NewPlatformReached : MonoBehaviour
-{
+{   
+    [SerializeField] private int _points = 20;
+
     private bool _reached = false;
     private PlatformHole _platformHole;
-    public static event Action onNewPlatform;
 
     void Start()
     {
@@ -19,7 +20,8 @@ public class NewPlatformReached : MonoBehaviour
             if (!_reached)
             {
                 _reached = true;
-                onNewPlatform?.Invoke();
+                GameEvents.onNewPlatformEvent?.Invoke();
+                GameEvents.OnPointsChangeEvent?.Invoke(_points);
             }
         }
     }
