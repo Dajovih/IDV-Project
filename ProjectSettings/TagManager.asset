@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - Platform
   - LeftPortal
   - RightPortal
   - Enemy
@@ -20,7 +19,7 @@ TagManager:
   - Clone
   - Portal
   - Enemy
-  - 
+  - Ground
   - 
   - 
   - 
