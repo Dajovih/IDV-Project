@@ -1,24 +1,41 @@
+using System;
 using UnityEngine;
 
-public class PlayerHealth : LivingEntity
-{
-    private Animator _anim;
+public class PlayerHealth : MonoBehaviour
+{   
+
+    [field: SerializeField] public static int TotalHealthPoints = 3;
+
+    public static int HealthPoints = PlayerHealth.TotalHealthPoints;
+
+    private void TakeHit(int damage = 1)
+    {
+        if(PlayerHealth.HealthPoints <= 0)
+            return;
     
-    void Start()
-    {
-        InitHealth();
+        PlayerHealth.HealthPoints -= damage;
+        OnTakeDamage();
+        
+        if (PlayerHealth.HealthPoints <= 0)
+        {
+            OnDeath();
+        }
     }
 
-    protected override void OnTakeDamage()
+    private void OnTakeDamage()
     {
-        base.OnTakeDamage();
-        GameEvents.OnPlayerHealthChangeEvent?.Invoke(HealthPoints);
+        GameEvents.OnPlayerHealthChangeEvent?.Invoke(PlayerHealth.HealthPoints);
     }
 
-    protected override void OnDeath()
-    {
-        base.OnDeath();    
-        gameObject.SetActive(false);
+    private void OnDeath()
+    {   
+        AudioManager.Instance.PlaySound2D("DeathSFX");
+        GameObject[] objectsToDisable = GameObject.FindGameObjectsWithTag("Player");
+
+        foreach (GameObject obj in objectsToDisable) { 
+    	    obj.SetActive(false);  
+        }
+
         GameManager.Instance.GameOver();
     }
 
@@ -27,6 +44,7 @@ public class PlayerHealth : LivingEntity
         if (collision.gameObject.tag == "Enemy")
         {   
             Debug.Log("Enemy Colission!");
+            AudioManager.Instance.PlaySound2D("AttackSFX");
             TakeHit();
         }
     }

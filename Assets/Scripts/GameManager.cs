@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     //Gameplay
     private int _score = 0;
-    private int _level = 0;
+    private int _level = 1;
     private float _time = 0;
     
     private void Awake()
@@ -29,24 +29,22 @@ public class GameManager : MonoBehaviour
 
 
     private void Start()
-    {
+    {   
+        AudioManager.Instance.Init();
         MainMenu();
 
         GameEvents.OnPointsChangeEvent += OnPointsChange;
-        //GameEvents.OnLevelProgressEvent += OnLevelProgress;
     }
     
 
     private void OnDestroy()
     {
         GameEvents.OnPointsChangeEvent -= OnPointsChange;
-        //GameEvents.OnLevelProgressEvent -= OnLevelProgress;
     }
-
 
     public void StartGame()
     {
-        HandleGameplay();
+        HandleLevel(1);
     }
 
     public void ExitGame()
@@ -57,6 +55,16 @@ public class GameManager : MonoBehaviour
     public void MainMenu()
     {
         HandleMenu();
+    }
+
+    public void Level(int levelNum)
+    {
+        HandleLevel(levelNum);
+    }
+
+    public void ScoreMenu()
+    {
+        HandleScoreMenu();
     }
 
     public void GameOver()
@@ -70,42 +78,75 @@ public class GameManager : MonoBehaviour
         }
         
         GameEvents.OnGameOverEvent?.Invoke(_score, _score > maxScore, _time, _level);
+        AudioManager.Instance.PlayMusic(AudioMusicType.Death);
+    }
+
+    public void NextLevel()
+    {
+        Debug.Log("Next Level");
+        _time = Time.time - _time;
+        int maxScore = PlayerPrefs.GetInt("MaxScore", 0);
+        
+        if (_score > maxScore)
+        {
+            PlayerPrefs.SetInt("MaxScore", _score);
+        }
+        
+        GameEvents.OnNextLevelEvent?.Invoke(_score, _score > maxScore, _time, _level);
+        AudioManager.Instance.PlayMusic(AudioMusicType.Victory);
+
+        _level += 1;
     }
 
     void HandleMenu()
     {
         Debug.Log("Loading Menu...");
-        SceneManager.LoadScene("Menu");
-        //AudioManager.Instance.PlayMusic(AudioMusicType.Menu);
-    }
-    
-    void HandleGameplay()
-    {
-        Debug.Log("Loading Level 1...");
 
         _score = 0;
         
-        StartCoroutine(LoadGameplayAsyncScene("Level1"));
+        AudioManager.Instance.PlayMusic(AudioMusicType.Menu);
+        SceneManager.LoadScene("Menu");
     }
     
-    IEnumerator LoadGameplayAsyncScene(string scene)
+    void HandleLevel(int levelNum)
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
-        
-        // Wait until the asynchronous scene fully loads
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
+        Debug.Log("Loading Level {levelNum}...");
+
+        _level = levelNum;
+        AudioMusicType music = AudioMusicType.Level_1;
+
+        switch (levelNum) {
+
+            case 2:
+                music = AudioMusicType.Level_2;
+                break;
+
+            case 3:
+                music = AudioMusicType.Level_3;
+                break;
+
+            default:
+                break;
+
         }
         
-        yield return new WaitForSeconds(1f);
+        string levelName = "Level" + levelNum.ToString();
+
+        AudioManager.Instance.PlayMusic(music);
+        SceneManager.LoadScene(levelName);
 
         _time = Time.time;
         GameEvents.OnStartGameEvent?.Invoke();
-        //AudioManager.Instance.PlayMusic(AudioMusicType.Gameplay);
     }
 
- 
+    void HandleScoreMenu()
+    {
+        Debug.Log("Loading Score Menu...");
+   
+        AudioManager.Instance.PlayMusic(AudioMusicType.Score);
+        SceneManager.LoadScene("Score");
+    }
+
     private void OnPointsChange(int points)
     {   
         if (_score + points < 0) {
@@ -117,11 +158,6 @@ public class GameManager : MonoBehaviour
         GameEvents.OnPlayerScoreChangeEvent?.Invoke(_score);
     }
 /*
-    void OnLevelProgress(int level)
-    {
-        _level = level + 1;
-    }
-
     public Rank rank;
 
     [ContextMenu("Save rank")]

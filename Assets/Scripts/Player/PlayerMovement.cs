@@ -57,9 +57,10 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Jump() {
         if (_inGround && _jump)
-        {
+        {   
             _body.velocity = new Vector2(_body.velocity.x, _jumpForce); //Cambia la coordenada en y seg�n jumpForce
             _inGround = false;
+            AudioManager.Instance.PlaySound2D("JumpSFX");
         }
     }
 }

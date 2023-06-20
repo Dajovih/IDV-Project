@@ -19,12 +19,14 @@ public class MainMenuUI : MonoBehaviour
     public void OnStartButtonClicked()
     {
         _startButton.interactable = false;
+        AudioManager.Instance.PlaySound2D("ClickSFX");
         GameManager.Instance.StartGame();
     }
 
     public void OnExitButtonClicked()
     {
         _exitButton.interactable = false;
+        AudioManager.Instance.PlaySound2D("ClickSFX");
         GameManager.Instance.ExitGame();
     }
 }

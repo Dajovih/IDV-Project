@@ -12,14 +12,17 @@ public class PlayerScreenWrap : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collider) {
         Vector3 nPosition = new Vector3(transform.position.x, transform.position.y, 0);
+
         if (collider.gameObject.tag == "MainCamera") {  //Si se encuentra dentro de la c�mara
             _inCamera = true;
         }
+
         if (collider.gameObject.tag == "LeftPortal") {  //Si se entra en el portal izquierdo, se activa el clon al otro lado
             _clone.SetActive(true);
             nPosition.x = nPosition.x + 20;
-            _clone.transform.position = nPosition;  //Posici�n del clon 20 bloques a la derecha, esto es por la cantidad de cuadrdos         
+            _clone.transform.position = nPosition;  //Posici�n del clon 20 bloques a la derecha, esto es por la cantidad de cuadrdos 
         } 
+
         if (collider.gameObject.tag == "RightPortal") { //Si se entra en el portal derecho, se activa el clon al otro lado
             _clone.SetActive(true);
             nPosition.x = nPosition.x - 20; //Posicion del clon 20 bloques a la izquieda
@@ -30,7 +33,9 @@ public class PlayerScreenWrap : MonoBehaviour {
     private void OnTriggerExit2D(Collider2D collider) {
         if (collider.gameObject.tag == "MainCamera") {  //Si salen de la camara es necesario guardar un booleano
             _inCamera = false;
+            AudioManager.Instance.PlaySound2D("ScreenWrapSFX");
         }
+        
         if (collider.gameObject.tag == "LeftPortal" || collider.gameObject.tag == "RightPortal") {
             if (_inCamera) {    //Si permanecen en camara y salen de los portales, es porque el jugador principal no paso al otro lado
                 _clone.SetActive(false);

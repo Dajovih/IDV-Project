@@ -22,6 +22,7 @@ public class NewPlatformReached : MonoBehaviour
                 _reached = true;
                 GameEvents.onNewPlatformEvent?.Invoke();
                 GameEvents.OnPointsChangeEvent?.Invoke(_points);
+                AudioManager.Instance.PlaySound2D("NewHoleSFX");
             }
         }
     }

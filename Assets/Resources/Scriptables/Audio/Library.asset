@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d47f0724641a0a648a95ac1ea254e09f, type: 3}
+  m_Name: Library
+  m_EditorClassIdentifier: 
+  music:
+  - MusicType: 0
+    Clip: {fileID: 8300000, guid: 9301e567021499847ac82d268536fcd1, type: 3}
+  - MusicType: 1
+    Clip: {fileID: 8300000, guid: 317dd262d7670b240ad3a87cad4f6206, type: 3}
+  - MusicType: 2
+    Clip: {fileID: 8300000, guid: 18bb079cd3d6f114a8d20491f9bb4244, type: 3}
+  - MusicType: 3
+    Clip: {fileID: 8300000, guid: bfde1350a28638e4cac625ce65eab888, type: 3}
+  - MusicType: 4
+    Clip: {fileID: 8300000, guid: 547079e0f99dc214192f92af538eedcb, type: 3}
+  - MusicType: 5
+    Clip: {fileID: 8300000, guid: be4e9abc04bf70f4bb7143bf61381e38, type: 3}
+  - MusicType: 6
+    Clip: {fileID: 8300000, guid: fca38982c6b767242b06b3e7e217df54, type: 3}
+  soundGroups:
+  - groupID: AttackSFX
+    clips:
+    - {fileID: 8300000, guid: 212743925eb075e49958cf2cebd23a34, type: 3}
+    - {fileID: 8300000, guid: 39ceafd8835e67e48bf0efd19e3b2426, type: 3}
+  - groupID: ClickSFX
+    clips:
+    - {fileID: 8300000, guid: c0d85a8867b27ff479a649f2d8c3b81b, type: 3}
+  - groupID: DeathSFX
+    clips:
+    - {fileID: 8300000, guid: 0d939a2ed34211149bec2e8899b596f6, type: 3}
+  - groupID: GoalSFX
+    clips:
+    - {fileID: 8300000, guid: bf95ef11b2c1a3c4c8e995cbeb21302f, type: 3}
+  - groupID: JumpSFX
+    clips:
+    - {fileID: 8300000, guid: 8414581bcc44def45bfaa28a818dd51c, type: 3}
+  - groupID: NewHoleSFX
+    clips:
+    - {fileID: 8300000, guid: bfac296decf5f5d4d8a12ae587d10b3f, type: 3}
+  - groupID: NewRecordSFX
+    clips:
+    - {fileID: 8300000, guid: d097bb8664d2c494486befe608869f89, type: 3}
+  - groupID: ScreenWrapSFX
+    clips:
+    - {fileID: 8300000, guid: ed0fecd2abe2e0546b2e578e6451c5be, type: 3}
