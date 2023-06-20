@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     public void ScoreMenu()
     {
-        HandleScoreMenu();
+        AudioManager.Instance.PlayMusic(AudioMusicType.Score);
     }
 
     public void GameOver()
@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
     
     void HandleLevel(int levelNum)
     {
-        Debug.Log("Loading Level {levelNum}...");
+        Debug.Log("Loading Level " + levelNum.ToString() + "...");
 
         _level = levelNum;
         AudioMusicType music = AudioMusicType.Level_1;
@@ -137,14 +137,6 @@ public class GameManager : MonoBehaviour
 
         _time = Time.time;
         GameEvents.OnStartGameEvent?.Invoke();
-    }
-
-    void HandleScoreMenu()
-    {
-        Debug.Log("Loading Score Menu...");
-   
-        AudioManager.Instance.PlayMusic(AudioMusicType.Score);
-        SceneManager.LoadScene("Score");
     }
 
     private void OnPointsChange(int points)

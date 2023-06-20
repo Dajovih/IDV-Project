@@ -26,12 +26,18 @@ public class PlatformHole : MonoBehaviour {
             }
             _allLevels.Add(levelPlatforms); 
         }
+        Debug.Log("Total number of platforms: " + _allLevels.Count.ToString());
     }
 
     private void Start()
     {
         Invoke("HoleCreation", _firstHoleStartTime);    //Se invoca al segundo _firstsHoleStartTime el m�todo hole creation, que crea huecos
         InvokeRepeating("HoleMovement", _holeMovementStart, _movementVelocity); //Se invoca cada movementVelocity segundos el movimiento de los huecos. Es decir que est� es la velocidad con la que se mueven
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.onNewPlatformEvent -= HoleCreation;
     }
 
     private void HoleUpdate(List<int> hole) //Es necesario que el collider se vuelva trigger y que la imagen desaparezca para que parezca hueco
@@ -43,7 +49,8 @@ public class PlatformHole : MonoBehaviour {
     }
 
     private void HoleCreation() 
-    {
+    {   
+        Debug.Log("Hole Created!");
         List<int> hole = new List<int>();   //Almacena informaci�n del hueco
         int nLevel, nPlatform, orientation; //Es necesario saber el nivel donde se encuentra el hueco, la plataforma donde se va a generar y la orientacion de movimiento (izquierda, derecha)
         while (true)
@@ -80,19 +87,20 @@ public class PlatformHole : MonoBehaviour {
             hole[1] = hole[3];
             hole[3] = hole[1] + hole[4];
             //En los casos en que se obtenga 20 o -1 es porque hay un cambio de nivel. �Si se obtiene -1 o 6 en las plataformas es porque se vuelve a empezar desde los niveles extremos
-            if (hole[3] == 20) {
-                hole[3] = 0;
-                hole[2] = hole[2] + hole[4];
+            
+            if (hole[3] == -1) {
+                hole[3] = 19;
+                hole[2] = hole[2] - hole[4];
                 if (hole[2] == 6) {
                     hole[2] = 0;
                 }
-            } else if (hole[3] == -1) {
-                hole[3] = 19;
-                hole[2] = hole[2] + hole[4];
+            } else if (hole[3] == 20) {
+                hole[3] = 0;
+                hole[2] = hole[2] - hole[4];
                 if (hole[2] == -1) {
                     hole[2] = 5;
                 }
-            } 
+            }
             HoleUpdate(hole);
         }
     }
