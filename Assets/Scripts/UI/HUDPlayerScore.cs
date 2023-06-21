@@ -21,8 +21,8 @@ public class HUDPlayerScore : MonoBehaviour
     
     private void OnPlayerScoreChange(int score)
     {   
-        int _scoreLength = score.ToString().Length;
-        string zeros = new String('0', 4-_scoreLength);;
+        int scoreLength = score.ToString().Length;
+        string zeros = new String('0', 4 - scoreLength);;
         _scoreText.text = $"SCORE: {zeros}{score}";
         Vector2 anchorPos = _scoreText.rectTransform.anchoredPosition;
         _scoreText.rectTransform.DOJumpAnchorPos(anchorPos, 25, 1, 0.5f);

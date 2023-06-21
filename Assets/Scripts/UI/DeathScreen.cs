@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HUDNextLevelScreen : MonoBehaviour
+public class DeathScreen : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI _scoreText;
@@ -14,40 +14,34 @@ public class HUDNextLevelScreen : MonoBehaviour
     [SerializeField]
     private GameObject _newMaxScore;
     [SerializeField] 
-    private Button _nextButton;
-    [SerializeField] 
     private Button _backButton;
-    private int _nextlevel;
+
 
     private CanvasGroup _canvasGroup;
     
     private void Start()
     {
-        GameEvents.OnNextLevelEvent += OnNextLevel;
+        GameEvents.OnGameOverEvent += OnGameOver;
 
         _canvasGroup = GetComponent<CanvasGroup>();
         _canvasGroup.alpha = 0;
         _canvasGroup.blocksRaycasts = false;
         _canvasGroup.interactable = false;
         
-        _nextButton.onClick.AddListener(OnButtonNext);
-        _backButton.onClick.AddListener(OnButtonBack);
+        _backButton.onClick.AddListener(OnBackButtonClicked);
     }
 
     private void OnDestroy()
     {
-        GameEvents.OnNextLevelEvent -= OnNextLevel;
+        GameEvents.OnGameOverEvent -= OnGameOver;
     }
 
-    private void OnNextLevel(int score, bool isMaxScore, float time, int level)
+    private void OnGameOver(int score, bool isMaxScore, float time, int level)
     {
         SetResults(score, isMaxScore, time, level);
-
         _canvasGroup.alpha = 1;
         _canvasGroup.blocksRaycasts = true;
         _canvasGroup.interactable = true;
-
-        _nextlevel = level + 1;
     }
 
     void SetResults(int score, bool isMaxScore, float time, int level)
@@ -63,17 +57,9 @@ public class HUDNextLevelScreen : MonoBehaviour
         _levelText.text = $"Level: {level}";
     }
     
-    void OnButtonNext()
-    {   
-        if (_nextlevel > 3) {
-            GameManager.Instance.ScoreMenu();
-        } else {
-            GameManager.Instance.Level(_nextlevel);
-        }
-    }
-
-    void OnButtonBack()
-    {   
+    void OnBackButtonClicked()
+    {
+        AudioManager.Instance.PlaySound2D("ClickSFX");
         GameManager.Instance.MainMenu();
     }
 }

@@ -3,9 +3,13 @@ using UnityEngine;
 
 public static class GameEvents
 {
-    public static Action OnStartGameEvent;
+    public static Action<int> OnStartGameEvent; // current max score
 
     public static Action onNewPlatformEvent;
+
+    public static Action onRankingScreenEvent;
+
+    public static Action onMainMenuEvent;
     
     public static Action<int, bool, float, int> OnGameOverEvent; //total score, is max score?, time, level
 
