@@ -58,8 +58,8 @@ public class GameManager : MonoBehaviour
 
         playerHealth = 3;
         _score = 0;
-        _level = 1;
-        LoadLevel(1);
+        _level = 2;
+        LoadLevel(2);
     }
 
     public void ExitGame()

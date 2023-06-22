@@ -21,8 +21,10 @@ public class PlayerMovement : MonoBehaviour {
     private LayerMask _layerGround;
     private bool _inGround;
     private bool _jump;
-    private bool _canMove = true;
+    //private bool _canMove = true;
     private float _direction;
+    private float _time = 0;
+    private float _wait = 0;
     
 
 
@@ -40,7 +42,8 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void Update() {
-        if (_canMove)
+        _time+= Time.deltaTime;
+        if (_time >= _wait)
         {
             _direction = Input.GetAxis("Horizontal"); //Obtener la direccion hacia la cual se esta movimendo : (1,-1)
             _animator.SetFloat("Movement", MathF.Abs(_direction));  //Guarda la direccion en el parametro movement del animator. Siempre van a ser valor mayores a 0
@@ -48,21 +51,19 @@ public class PlayerMovement : MonoBehaviour {
             {
                 _jump = true;
             }
-            //_animator.SetFloat("InAir", Math.Abs(_body.velocity.y));
         }
-
     }
 
     private void FixedUpdate()
     {
-        if (_canMove)
+        if (_time >= _wait)
         {
             Move();
+        }
             _inGround = Physics2D.OverlapBox(_feet.position, _boxDimensions, 0f, _layerGround); //Verifica si los pies del jugador están sobre el suelo
             _animator.SetBool("InGround", _inGround);   //Establece el parámetro InGround del animator en true o false según inGround
             Jump();
             _jump = false;
-        }
         
     }
 
@@ -90,17 +91,13 @@ public class PlayerMovement : MonoBehaviour {
 
     private void StopMoving(float seconds)
     {
-        StartCoroutine(StopCoroutine(seconds));
+        _time = 0;
+        _wait = seconds;
+        _body.velocity = Vector2.zero;
+        _direction = 0;
+        _animator.SetFloat("Movement", 0);
     }
 
-    private IEnumerator StopCoroutine(float seconds)
-    {
-        _canMove = false;
-        _body.velocity = Vector2.zero;
-        _animator.SetFloat("Movement", 0);
-        yield return new WaitForSeconds(seconds);
-        _canMove = true;
-    }
 
     /*void OnDrawGizmos()
     {

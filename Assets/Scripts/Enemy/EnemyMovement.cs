@@ -11,7 +11,9 @@ public class EnemyMovement : MonoBehaviour {
     //Elementos propios del objeto obtenidos en el start
     private Animator _animator;
     private Rigidbody2D _body2D;
-    private bool _canMove = true;
+    //private bool _canMove = true;
+    private float _time = 0f;
+    private float _wait = 0f;
 
     private void Start() {
         _animator = GetComponent<Animator>();
@@ -25,24 +27,23 @@ public class EnemyMovement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (_canMove)
+        _time += Time.deltaTime;
+        if (_time >= _wait)
         {
             _body2D.velocity = new Vector2(-1 * _speed, _body2D.velocity.y);
             _animator.SetFloat("Movement", Math.Abs(_body2D.velocity.x));
+        } else
+        {
+            _body2D.velocity = Vector2.zero;
         }
     }
 
     private void StopMoving(float seconds)
     {
-        StartCoroutine(StopCoroutine(seconds));
-    }
-
-    private IEnumerator StopCoroutine(float seconds)
-    {
-        _canMove = false;
-        _body2D.velocity = Vector2.zero;
+        _time = 0;
+        _wait = seconds;
         _animator.SetFloat("Movement", 0);
-        yield return new WaitForSeconds(seconds);
-        _canMove = true;
+
     }
+    
 }

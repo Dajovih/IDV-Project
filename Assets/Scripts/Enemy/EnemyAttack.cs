@@ -6,9 +6,6 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     [SerializeField] float _waitTime;
-    [SerializeField] float _attackTimeDuration;
-    [SerializeField] float _attackForce;
-    [SerializeField] Transform _start;
     private Animator _animator;
 
     private void Start()
@@ -22,8 +19,6 @@ public class EnemyAttack : MonoBehaviour
         {
             GameEvents.OnEnemyAttack?.Invoke(_waitTime);
             _animator.SetBool("Attack", true);
-            Force(_attackTimeDuration,collision.gameObject.GetComponent<Rigidbody2D>());
-            //collision.gameObject.transform.position = _start.position;
              
         }
     }
@@ -35,17 +30,5 @@ public class EnemyAttack : MonoBehaviour
             _animator.SetBool("Attack", false);
         }
 
-    }
-
-    private void Force(float seconds, Rigidbody2D body)
-    {
-        StartCoroutine(ForceCoroutine(seconds,body));
-    }
-
-    private IEnumerator ForceCoroutine(float seconds, Rigidbody2D body)
-    {
-        yield return new WaitForSeconds(seconds);
-        Vector2 force = new Vector2(_attackForce, 0f);
-        body.AddForce(force, ForceMode2D.Impulse);
     }
 }

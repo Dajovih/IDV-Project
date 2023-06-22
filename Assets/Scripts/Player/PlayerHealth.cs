@@ -1,9 +1,32 @@
 using System;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] float _wait;
+    [SerializeField] Transform _start;
+
     public static int HealthPoints = GameManager.Instance.playerHealth;
+    private Animator _animator;
+    private float _time = 0f;
+    private bool _isTeleporting = false;
+
+    private void Update()
+    {
+        _time += Time.deltaTime;
+        if (_time >= _wait && _isTeleporting)
+        {
+            transform.position = _start.position;
+            _isTeleporting = false;
+        }
+    }
+
+    private void Start()
+    {
+        _animator = GetComponent<Animator>();
+    }
 
     private void TakeHit(int damage = 1)
     {
@@ -15,6 +38,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (PlayerHealth.HealthPoints <= 0)
         {
+
             OnDeath();
         }
     }
@@ -45,6 +69,17 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("Enemy Colission!");
             AudioManager.Instance.PlaySound2D("AttackSFX");
             TakeHit();
+            _animator.SetBool("InAttack", true);
+            _time = 0;
+            _isTeleporting = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            _animator.SetBool("InAttack", false);
         }
     }
 }

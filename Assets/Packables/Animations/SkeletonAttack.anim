@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Enemy1Attack
+  m_Name: SkeletonAttack
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,26 +20,24 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -7008412969330441016, guid: 5f19f67e94a2e2f4ba57d2b338387c11, type: 3}
-    - time: 0.14285715
       value: {fileID: -7763475090823894447, guid: 5f19f67e94a2e2f4ba57d2b338387c11, type: 3}
-    - time: 0.2857143
+    - time: 0.06666667
       value: {fileID: 302641331129538988, guid: 5f19f67e94a2e2f4ba57d2b338387c11, type: 3}
-    - time: 0.42857143
+    - time: 0.13333334
       value: {fileID: -6329420634031446844, guid: 5f19f67e94a2e2f4ba57d2b338387c11, type: 3}
-    - time: 0.5714286
+    - time: 0.2
       value: {fileID: -910092549403018386, guid: 5f19f67e94a2e2f4ba57d2b338387c11, type: 3}
-    - time: 0.71428573
+    - time: 0.26666668
       value: {fileID: 221524225039350300, guid: 5f19f67e94a2e2f4ba57d2b338387c11, type: 3}
-    - time: 0.85714287
+    - time: 0.33333334
       value: {fileID: 1290532464073988732, guid: 5f19f67e94a2e2f4ba57d2b338387c11, type: 3}
-    - time: 1
+    - time: 0.4
       value: {fileID: 4780903288873104255, guid: 5f19f67e94a2e2f4ba57d2b338387c11, type: 3}
     attribute: m_Sprite
     path: Sprite
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 7
+  m_SampleRate: 15
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -54,7 +52,6 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -7008412969330441016, guid: 5f19f67e94a2e2f4ba57d2b338387c11, type: 3}
     - {fileID: -7763475090823894447, guid: 5f19f67e94a2e2f4ba57d2b338387c11, type: 3}
     - {fileID: 302641331129538988, guid: 5f19f67e94a2e2f4ba57d2b338387c11, type: 3}
     - {fileID: -6329420634031446844, guid: 5f19f67e94a2e2f4ba57d2b338387c11, type: 3}
@@ -67,7 +64,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.1428572
+    m_StopTime: 0.46666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

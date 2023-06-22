@@ -14,6 +14,8 @@ public class PlatformHole : MonoBehaviour {
     private float _firstAuxTime = 0f;
 
     private float _firstHoleStartTime = 2f; //Cuando empieza el primer hueco. Allí empieza el nivel
+    private float _time = 0;
+    private float _wait = 0;
 
     private void Awake()
     {
@@ -47,14 +49,19 @@ public class PlatformHole : MonoBehaviour {
 
     private void Update()
     {
+        _time += Time.deltaTime;
         _firstAuxTime += Time.deltaTime;
         if (_firstAuxTime >= _firstHoleStartTime)   //Hay que asegurarse de que ya haya pasado el tiempo de creación del primer hueco
         {
-            _counter += Time.deltaTime;
-            if (_counter >= _movementTime)  //Cada que se llegue al tiempo de movimiento se invoca. Es decir que la función se va a llamar cada movementTime segundos
+            if (_time >= _wait)
             {
-                HoleMovement(); 
-                _counter = 0;
+                _counter += Time.deltaTime;
+                if (_counter >= _movementTime)  //Cada que se llegue al tiempo de movimiento se invoca. Es decir que la función se va a llamar cada movementTime segundos
+                {
+                    HoleMovement();
+                    _counter = 0;
+                }
+                
             }
         }
 
@@ -144,14 +151,9 @@ public class PlatformHole : MonoBehaviour {
 
     private void StopMoving(float seconds)
     {
-        StartCoroutine(StopCoroutine(seconds));
-    }
+        _time = 0;
+        _wait = seconds;
 
-    private System.Collections.IEnumerator StopCoroutine(float seconds)
-    {
-        float aux = _movementTime;
-        _movementTime = 999;
-        yield return new WaitForSeconds(seconds);
-        _movementTime = aux;
+
     }
 }
