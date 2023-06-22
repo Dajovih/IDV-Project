@@ -1,17 +1,20 @@
 using System;
+using System.Diagnostics;
 using UnityEngine;
 
 public class PlayerScreenWrap : MonoBehaviour {
     [SerializeField] private GameObject _clone; //Es necesario crear un clon para el screen wrap
-    
+
     private bool _inCamera = true;  //Condici�n necesaria para cuando sale del portal y de la c�mara
+    private Transform _parent;
 
     private void Awake() {
         _clone.SetActive(false); //Apagar el clon por si se encuentra prendido
+        _parent = transform.parent;
     }
 
     private void OnTriggerEnter2D(Collider2D collider) {
-        Vector3 nPosition = new Vector3(transform.position.x, transform.position.y, 0);
+        Vector3 nPosition = new Vector3(_parent.position.x, _parent.position.y, 0);
 
         if (collider.gameObject.tag == "MainCamera") {  //Si se encuentra dentro de la c�mara
             _inCamera = true;
@@ -40,7 +43,7 @@ public class PlayerScreenWrap : MonoBehaviour {
             if (_inCamera) {    //Si permanecen en camara y salen de los portales, es porque el jugador principal no paso al otro lado
                 _clone.SetActive(false);
             } else {    //Si salen de la camara y del portal, el jugador principal debe tomar la posici�n del clon puesto que sale de la c�mara 
-                transform.position = _clone.transform.position;
+                _parent.position = _clone.transform.position;
                 _clone.SetActive(false);
             }
         }

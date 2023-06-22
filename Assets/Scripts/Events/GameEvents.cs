@@ -7,6 +7,10 @@ public static class GameEvents
 
     public static Action onNewPlatformEvent;
 
+    public static Action onWin;
+
+    public static Action<float> onAttack;
+
     public static Action onRankingScreenEvent;
 
     public static Action onMainMenuEvent;

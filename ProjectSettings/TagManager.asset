@@ -8,6 +8,7 @@ TagManager:
   - LeftPortal
   - RightPortal
   - Enemy
+  - Clone
   layers:
   - Default
   - TransparentFX
