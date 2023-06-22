@@ -36,7 +36,7 @@ public class MainMenu : MonoBehaviour
         _canvasGroup.interactable = true;
     }
 
-    private void HideMenu() {
+    private void HideMainMenu() {
         _canvasGroup.alpha = 0;
         _canvasGroup.blocksRaycasts = false;
         _canvasGroup.interactable = false;
@@ -44,9 +44,9 @@ public class MainMenu : MonoBehaviour
 
     public void OnStartButtonClicked()
     {
-        _startButton.interactable = false;
         AudioManager.Instance.PlaySound2D("ClickSFX");
-        GameManager.Instance.PlayerNameScreen();
+        HideMainMenu();
+        GameEvents.OnPlayerNameScreenEvent?.Invoke();
     }
 
     public void OnExitButtonClicked()
@@ -58,10 +58,9 @@ public class MainMenu : MonoBehaviour
 
     public void OnScoreButtonClicked()
     {
-        _scoreButton.interactable = false;
         AudioManager.Instance.PlaySound2D("ClickSFX");
         AudioManager.Instance.PlayMusic(AudioMusicType.Score);
-        HideMenu();
+        HideMainMenu();
         GameEvents.OnRankingScreenEvent?.Invoke();
     }
 }

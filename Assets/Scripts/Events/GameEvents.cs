@@ -11,9 +11,11 @@ public static class GameEvents
 
     public static Action<float> OnEnemyAttack;
 
+    public static Action OnMainMenuEvent;
+
     public static Action OnRankingScreenEvent;
 
-    public static Action OnMainMenuEvent;
+    public static Action OnPlayerNameScreenEvent;
     
     public static Action<int, bool, float, int> OnGameOverEvent; //total score, is max score?, time, level
 
@@ -22,6 +24,8 @@ public static class GameEvents
     public static Action<int> OnPlayerScoreChangeEvent; //current score
 
     public static Action<int> OnPlayerHealthChangeEvent; // current health
+
+    public static Action<string> OnPlayerNameChangeEvent; // player name
 
     public static Action<int> OnPointsChangeEvent; //points
 }

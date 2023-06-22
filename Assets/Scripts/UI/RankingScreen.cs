@@ -41,7 +41,7 @@ public class RankingScreen : MonoBehaviour
         _canvasGroup.interactable = true;
     }
 
-    private void HideRanking() {
+    private void HideRankingScreen() {
         _canvasGroup.alpha = 0;
         _canvasGroup.blocksRaycasts = false;
         _canvasGroup.interactable = false;
@@ -71,7 +71,7 @@ public class RankingScreen : MonoBehaviour
     {   
         AudioManager.Instance.PlaySound2D("ClickSFX");
         AudioManager.Instance.PlayMusic(AudioMusicType.Menu);
-        HideRanking();
+        HideRankingScreen();
         GameEvents.OnMainMenuEvent?.Invoke();
     }
 }

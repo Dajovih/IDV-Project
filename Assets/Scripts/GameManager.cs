@@ -37,12 +37,14 @@ public class GameManager : MonoBehaviour
         LoadRanking();
         MainMenu();
         GameEvents.OnPointsChangeEvent += OnPointsChange;
+        GameEvents.OnPlayerNameChangeEvent += OnPlayerNameChange;
     }
     
 
     private void OnDestroy()
     {
         GameEvents.OnPointsChangeEvent -= OnPointsChange;
+        GameEvents.OnPlayerNameChangeEvent += OnPlayerNameChange;
         SaveRanking();
     }
 
@@ -72,13 +74,13 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
-    public void PlayerNameScreen()
+    public void OnPlayerNameChange(string playerName)
     {   
+        if (playerName != "") {
+            _playerName = playerName;
+        }
+        
         StartGameplay();
-        /* TODO:
-        Debug.Log("Loading Player Name Screen...");
-        SceneManager.LoadScene("PlayerNameScreen");
-        */
     }
     
     public void LoadLevel(int levelNum)
