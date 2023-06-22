@@ -18,7 +18,7 @@ public class PlayerCamera : MonoBehaviour
 
     void FixedUpdate()
     {   
-        _position.y = _player.transform.position.y + (_distanceFromPlayer / 2);
+        _position.y = _player.transform.position.y + (_distanceFromPlayer / 3);
         transform.position = _position;
     }
 }
