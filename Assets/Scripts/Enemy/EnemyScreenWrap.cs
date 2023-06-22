@@ -7,7 +7,6 @@ public class EnemyScreenWrap : MonoBehaviour
     [SerializeField] private Transform _lastLeftPortal;
     [SerializeField] private GameObject _clone; //Es necesario crear un clon para el screen wrap
  
-    private List<Transform> _leftPortals;
     private Transform _parent;
     private bool _inCamera = true;  //Condici�n necesaria para cuando sale del portal y de la c�mara
 

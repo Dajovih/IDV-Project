@@ -42,7 +42,9 @@ public class EnemyMovement : MonoBehaviour {
     {
         _time = 0;
         _wait = seconds;
+        _body2D.velocity = Vector2.zero;
         _animator.SetFloat("Movement", 0);
+        
 
     }
     
