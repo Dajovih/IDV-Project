@@ -69,9 +69,9 @@ public class NextLevelScreen : MonoBehaviour
         
         if (_nextlevel > 3) {
             GameManager.Instance.MainMenu();
-            GameEvents.onRankingScreenEvent?.Invoke();
+            GameEvents.OnRankingScreenEvent?.Invoke();
         } else {
-            GameManager.Instance.Level(_nextlevel);
+            GameManager.Instance.LoadLevel(_nextlevel);
         }
     }
 

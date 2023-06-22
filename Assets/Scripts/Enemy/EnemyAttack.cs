@@ -20,7 +20,7 @@ public class EnemyAttack : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            GameEvents.onAttack?.Invoke(_waitTime);
+            GameEvents.OnEnemyAttack?.Invoke(_waitTime);
             _animator.SetBool("Attack", true);
             Force(_attackTimeDuration,collision.gameObject.GetComponent<Rigidbody2D>());
             //collision.gameObject.transform.position = _start.position;

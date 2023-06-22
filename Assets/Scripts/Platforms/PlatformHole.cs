@@ -15,8 +15,6 @@ public class PlatformHole : MonoBehaviour {
 
     private float _firstHoleStartTime = 2f; //Cuando empieza el primer hueco. Allí empieza el nivel
 
-
-
     private void Awake()
     {
         _holes = new List<List<int>>();
@@ -34,10 +32,17 @@ public class PlatformHole : MonoBehaviour {
 
     private void Start()
     {
-        GameEvents.onNewPlatformEvent += HoleCreation;
-        GameEvents.onWin += HolesDestruction;
-        GameEvents.onAttack += StopMoving;
+        GameEvents.OnNewPlatformEvent += HoleCreation;
+        GameEvents.OnLevelWin += HolesDestruction;
+        GameEvents.OnEnemyAttack += StopMoving;
         Invoke("HoleCreation", _firstHoleStartTime);    //Se invoca al segundo _firstsHoleStartTime el metodo hole creation, para crear el primer hueco
+    }
+
+    private void OnDestroy()
+    {
+        GameEvents.OnNewPlatformEvent -= HoleCreation;
+        GameEvents.OnLevelWin -= HolesDestruction;
+        GameEvents.OnEnemyAttack -= StopMoving;
     }
 
     private void Update()
@@ -54,13 +59,6 @@ public class PlatformHole : MonoBehaviour {
         }
 
        
-    }
-
-    private void OnDestroy()
-    {
-        GameEvents.onNewPlatformEvent -= HoleCreation;
-        GameEvents.onWin -= HolesDestruction;
-        GameEvents.onAttack -= StopMoving;
     }
 
     private void HoleUpdate(List<int> hole) //Es necesario que el collider se vuelva trigger y que la imagen desaparezca para que parezca hueco

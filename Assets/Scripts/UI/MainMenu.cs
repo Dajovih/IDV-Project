@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        GameEvents.onMainMenuEvent += OnMainMenu;
+        GameEvents.OnMainMenuEvent += OnMainMenu;
 
         _startButton.onClick.AddListener(OnStartButtonClicked);
         _exitButton.onClick.AddListener(OnExitButtonClicked);
@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameEvents.onMainMenuEvent -= OnMainMenu;
+        GameEvents.OnMainMenuEvent -= OnMainMenu;
     }
 
     private void OnMainMenu()
@@ -62,6 +62,6 @@ public class MainMenu : MonoBehaviour
         AudioManager.Instance.PlaySound2D("ClickSFX");
         AudioManager.Instance.PlayMusic(AudioMusicType.Score);
         HideMenu();
-        GameEvents.onRankingScreenEvent?.Invoke();
+        GameEvents.OnRankingScreenEvent?.Invoke();
     }
 }

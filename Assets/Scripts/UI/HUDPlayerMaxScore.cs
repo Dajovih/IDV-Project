@@ -10,16 +10,15 @@ public class HUDPlayerMaxScore : MonoBehaviour
     void Start()
     {
         _maxScoreText = GetComponent<TextMeshProUGUI>();
-        GameEvents.OnStartGameEvent += SetMaxScore;
+        GameEvents.OnLoadHighScoreEvent += OnLoadHighScore;
     }
 
     private void OnDestroy()
     {
-        GameEvents.OnStartGameEvent -= SetMaxScore;
+        GameEvents.OnLoadHighScoreEvent -= OnLoadHighScore;
     }
 
-    
-    private void SetMaxScore(int score)
+    private void OnLoadHighScore(int score)
     {   
         int scoreLength = score.ToString().Length;
         string zeros = new String('0', 4 - scoreLength);;

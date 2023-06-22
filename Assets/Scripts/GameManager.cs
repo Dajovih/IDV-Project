@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private int _level;
     private float _time;
     private string _playerName = "Anonymous";
+    public int playerHealth;
     public Ranking ranking;
     
     private void Awake()
@@ -46,17 +47,17 @@ public class GameManager : MonoBehaviour
     }
 
     public void StartGameplay()
-    {   
+    {      
         int maxScore = PlayerPrefs.GetInt(_playerName, -1);
 
         if (maxScore == -1) {
             PlayerPrefs.SetInt(_playerName, 0);
         }
 
-        GameEvents.OnStartGameEvent?.Invoke(maxScore);
+        playerHealth = 3;
         _score = 0;
         _level = 1;
-        Level(1);
+        LoadLevel(1);
     }
 
     public void ExitGame()
@@ -80,7 +81,7 @@ public class GameManager : MonoBehaviour
         */
     }
     
-    public void Level(int levelNum)
+    public void LoadLevel(int levelNum)
     {
         Debug.Log("Loading Level " + levelNum.ToString() + "...");
 
@@ -103,24 +104,42 @@ public class GameManager : MonoBehaviour
         }
         
         string levelName = "Level" + levelNum.ToString();
-        _time = Time.time;
-
         AudioManager.Instance.PlayMusic(music);
-        SceneManager.LoadScene(levelName);
+        StartCoroutine(LoadLevelAsyncScene(levelName));
+    }
+
+    IEnumerator LoadLevelAsyncScene(string scene)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
+        
+        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        _time = Time.time;
+        yield return new WaitForSeconds(0.1f);
+        int maxScore = PlayerPrefs.GetInt(_playerName, 0);
+        GameEvents.OnPlayerHealthChangeEvent?.Invoke(playerHealth);
+        GameEvents.OnPlayerScoreChangeEvent?.Invoke(_score);
+        GameEvents.OnLoadHighScoreEvent?.Invoke(maxScore);
     }
 
     public void GameOver()
     {
-        Debug.Log("Game over");
+        Debug.Log("Show 'Game Over' Screen");
         int maxScore = SaveScore();
+        _time = Time.time - _time;
         GameEvents.OnGameOverEvent?.Invoke(_score, _score > maxScore, _time, _level);
         AudioManager.Instance.PlayMusic(AudioMusicType.Death);
     }
 
     public void NextLevel()
     {
-        Debug.Log("Next Level");
+        Debug.Log("Show 'Victory' Screen");
         int maxScore = SaveScore();
+        _time = Time.time - _time;
         GameEvents.OnNextLevelEvent?.Invoke(_score, _score > maxScore, _time, _level);
         AudioManager.Instance.PlayMusic(AudioMusicType.Victory);
 
@@ -129,15 +148,12 @@ public class GameManager : MonoBehaviour
 
     private int SaveScore() {
 
-        _time = Time.time - _time;
         int maxScore = PlayerPrefs.GetInt(_playerName, 0);
         
         if (_score > maxScore)
         {
             PlayerPrefs.SetInt(_playerName, _score);
         }
-
-        Debug.Log($"Score: {_score} vs. High Score: {maxScore}");
 
         int playerRankingID = 0;
         int playersCount = ranking.players.Count;
@@ -189,14 +205,20 @@ public class GameManager : MonoBehaviour
     {
         string rankData = JsonUtility.ToJson(ranking, true);
         Debug.Log("Save ranking: " + rankData);
-        PlayerPrefs.SetString("Rank", rankData);
+        PlayerPrefs.SetString("Ranking", rankData);
     }
 
     [ContextMenu("Load ranking")]
     public void LoadRanking()
-    {
-        string rankData = PlayerPrefs.GetString("Rank");
-        ranking = JsonUtility.FromJson<Ranking>(rankData);
+    {   
+        string rankData = PlayerPrefs.GetString("Ranking", "null");
+
+        if (rankData != "null") {
+            ranking = JsonUtility.FromJson<Ranking>(rankData);
+        } else {
+            ranking = new Ranking {players = new List<RankPlayer>()};
+            SaveRanking();
+        }
 
         if (ranking.players.Count != 5) {
 

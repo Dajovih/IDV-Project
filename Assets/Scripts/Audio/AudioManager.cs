@@ -109,9 +109,9 @@ public class AudioManager : MonoBehaviour
     
     public void PlayMusic(AudioMusicType type, float fadeDuration = 1)
     {       
-        Debug.Log("Active Music Source Index: " + activeMusicSourceIndex.ToString());
+        //Debug.Log("Active Music Source Index: " + activeMusicSourceIndex.ToString());
         activeMusicSourceIndex = 1 - activeMusicSourceIndex;
-        Debug.Log("Number of music sources: " + musicSources.Length.ToString());
+        //Debug.Log("Number of music sources: " + musicSources.Length.ToString());
         musicSources[activeMusicSourceIndex].clip = GetClipForMusic(type);
         musicSources[activeMusicSourceIndex].Play();
 

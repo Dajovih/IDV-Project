@@ -3,17 +3,17 @@ using UnityEngine;
 
 public static class GameEvents
 {
-    public static Action<int> OnStartGameEvent; // current max score
+    public static Action<int> OnLoadHighScoreEvent; // current max score
 
-    public static Action onNewPlatformEvent;
+    public static Action OnNewPlatformEvent;
 
-    public static Action onWin;
+    public static Action OnLevelWin;
 
-    public static Action<float> onAttack;
+    public static Action<float> OnEnemyAttack;
 
-    public static Action onRankingScreenEvent;
+    public static Action OnRankingScreenEvent;
 
-    public static Action onMainMenuEvent;
+    public static Action OnMainMenuEvent;
     
     public static Action<int, bool, float, int> OnGameOverEvent; //total score, is max score?, time, level
 

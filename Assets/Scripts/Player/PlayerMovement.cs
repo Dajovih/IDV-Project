@@ -31,12 +31,12 @@ public class PlayerMovement : MonoBehaviour {
         _animator = GetComponent<Animator>();
         _feet = transform.Find("Feet"); //Encuentra el elemento hijo feet, el cual es necesario para el salto
         _layerGround = LayerMask.GetMask("Ground"); //Obtiene la Layer de ground, necesaria para el salto
-        GameEvents.onAttack += StopMoving;
+        GameEvents.OnEnemyAttack += StopMoving;
     }
 
     private void OnDestroy()
     {
-        GameEvents.onAttack -= StopMoving;
+        GameEvents.OnEnemyAttack -= StopMoving;
     }
 
     private void Update() {

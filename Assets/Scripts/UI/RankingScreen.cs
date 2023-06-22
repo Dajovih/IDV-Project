@@ -18,7 +18,7 @@ public class RankingScreen : MonoBehaviour
     
     private void Start()
     {
-        GameEvents.onRankingScreenEvent += OnRankingScreen;
+        GameEvents.OnRankingScreenEvent += OnRankingScreen;
 
         _canvasGroup = GetComponent<CanvasGroup>();
         _canvasGroup.alpha = 0;
@@ -30,7 +30,7 @@ public class RankingScreen : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameEvents.onRankingScreenEvent -= OnRankingScreen;
+        GameEvents.OnRankingScreenEvent -= OnRankingScreen;
     }
 
     private void OnRankingScreen()
@@ -72,6 +72,6 @@ public class RankingScreen : MonoBehaviour
         AudioManager.Instance.PlaySound2D("ClickSFX");
         AudioManager.Instance.PlayMusic(AudioMusicType.Menu);
         HideRanking();
-        GameEvents.onMainMenuEvent?.Invoke();
+        GameEvents.OnMainMenuEvent?.Invoke();
     }
 }

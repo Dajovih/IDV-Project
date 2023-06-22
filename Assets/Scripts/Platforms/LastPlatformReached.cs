@@ -13,7 +13,7 @@ public class LastPlatformReached : MonoBehaviour
             {
                 _reached = true;
 
-                GameEvents.onWin?.Invoke();
+                GameEvents.OnLevelWin?.Invoke();
                 GameObject[] objectsToDisable = GameObject.FindGameObjectsWithTag("Player");
 
                 foreach (GameObject obj in objectsToDisable) { 

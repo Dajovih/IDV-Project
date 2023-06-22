@@ -16,12 +16,12 @@ public class EnemyMovement : MonoBehaviour {
     private void Start() {
         _animator = GetComponent<Animator>();
         _body2D = GetComponent<Rigidbody2D>();
-        GameEvents.onAttack += StopMoving;
+        GameEvents.OnEnemyAttack += StopMoving;
     }
 
     private void OnDestroy()
     {
-        GameEvents.onAttack -= StopMoving;
+        GameEvents.OnEnemyAttack -= StopMoving;
     }
 
     private void FixedUpdate() {

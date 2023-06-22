@@ -2,20 +2,17 @@ using System;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
-{   
-
-    [field: SerializeField] public static int TotalHealthPoints = 3;
-
-    public static int HealthPoints = PlayerHealth.TotalHealthPoints;
+{
+    public static int HealthPoints = GameManager.Instance.playerHealth;
 
     private void TakeHit(int damage = 1)
     {
-        if(PlayerHealth.HealthPoints <= 0)
+        if (PlayerHealth.HealthPoints <= 0)
             return;
     
         PlayerHealth.HealthPoints -= damage;
-        OnTakeDamage();
-        
+        OnTakeDamage();  
+
         if (PlayerHealth.HealthPoints <= 0)
         {
             OnDeath();
@@ -25,11 +22,13 @@ public class PlayerHealth : MonoBehaviour
     private void OnTakeDamage()
     {
         GameEvents.OnPlayerHealthChangeEvent?.Invoke(PlayerHealth.HealthPoints);
+        GameManager.Instance.playerHealth = PlayerHealth.HealthPoints;
     }
 
     private void OnDeath()
     {   
         AudioManager.Instance.PlaySound2D("DeathSFX");
+
         GameObject[] objectsToDisable = GameObject.FindGameObjectsWithTag("Player");
 
         foreach (GameObject obj in objectsToDisable) { 
