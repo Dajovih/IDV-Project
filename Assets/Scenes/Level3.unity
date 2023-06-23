@@ -3498,7 +3498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 954d0e3a045c48746b5e0ee20597fb40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementTime: 0.33
+  _movementTime: 0.15
 --- !u!1 &287539700
 GameObject:
   m_ObjectHideFlags: 0
@@ -14726,8 +14726,8 @@ GameObject:
   - component: {fileID: 1148046404}
   - component: {fileID: 1148046405}
   m_Layer: 0
-  m_Name: Camera
-  m_TagString: MainCamera
+  m_Name: Delimiter
+  m_TagString: LevelDelimiter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14760,7 +14760,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0023498535, y: 1.8130355}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -14771,7 +14771,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 19.992722, y: 16.331505}
+  m_Size: {x: 20, y: 20}
   m_EdgeRadius: 0
 --- !u!1 &1156563345
 GameObject:
@@ -14844,7 +14844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9eeeff6ff745384a963124a8597c374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _points: 30
+  _points: 300
 --- !u!1 &1178958874
 GameObject:
   m_ObjectHideFlags: 0
@@ -15600,7 +15600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9eeeff6ff745384a963124a8597c374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _points: 30
+  _points: 300
 --- !u!1 &1224535432
 GameObject:
   m_ObjectHideFlags: 0
@@ -16867,7 +16867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9eeeff6ff745384a963124a8597c374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _points: 30
+  _points: 300
 --- !u!1 &1310974976
 GameObject:
   m_ObjectHideFlags: 0
@@ -19591,7 +19591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9eeeff6ff745384a963124a8597c374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _points: 30
+  _points: 300
 --- !u!1 &1559422789
 GameObject:
   m_ObjectHideFlags: 0
@@ -20512,7 +20512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9eeeff6ff745384a963124a8597c374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _points: 30
+  _points: 300
 --- !u!1 &1606494526
 GameObject:
   m_ObjectHideFlags: 0
@@ -22893,7 +22893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9eeeff6ff745384a963124a8597c374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _points: 30
+  _points: 300
 --- !u!61 &1818174135
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24173,7 +24173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9eeeff6ff745384a963124a8597c374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _points: 30
+  _points: 300
 --- !u!1 &1934249770
 GameObject:
   m_ObjectHideFlags: 0

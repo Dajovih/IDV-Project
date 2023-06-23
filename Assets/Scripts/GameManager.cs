@@ -121,7 +121,6 @@ public class GameManager : MonoBehaviour
         }
 
         _time = Time.time;
-        yield return new WaitForSeconds(0.1f);
         int maxScore = PlayerPrefs.GetInt(_playerName, 0);
         GameEvents.OnPlayerHealthChangeEvent?.Invoke(playerHealth);
         GameEvents.OnPlayerScoreChangeEvent?.Invoke(_score);

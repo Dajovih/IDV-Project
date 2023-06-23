@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-//using DG.Tweening;
 using System;
 
 public class HUDPlayerScore : MonoBehaviour
@@ -24,8 +23,6 @@ public class HUDPlayerScore : MonoBehaviour
         int scoreLength = score.ToString().Length;
         string zeros = new String('0', 4 - scoreLength);;
         _scoreText.text = $"SCORE: {zeros}{score}";
-        //Vector2 anchorPos = _scoreText.rectTransform.anchoredPosition;
-        //_scoreText.rectTransform.DOJumpAnchorPos(anchorPos, 25, 1, 0.5f);
     }
     
 }

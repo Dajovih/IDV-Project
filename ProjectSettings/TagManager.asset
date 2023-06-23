@@ -9,6 +9,7 @@ TagManager:
   - RightPortal
   - Enemy
   - Clone
+  - LevelDelimiter
   layers:
   - Default
   - TransparentFX
