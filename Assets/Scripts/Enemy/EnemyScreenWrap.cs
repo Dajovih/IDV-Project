@@ -49,21 +49,13 @@ public class EnemyScreenWrap : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "LevelDelimiter")
-        {  //Si salen de la camara es necesario guardar un booleano
-            _inDelimiter = false;
-            Debug.Log($"Enemy {_parent.name} has exit the delimiter");
-        }
-
+       
         if (collider.gameObject.tag == "LeftPortal")
         {   
-            Debug.Log($"Enemy {_parent.name} has exit a LeftPortal");
-            if (!_inDelimiter)
-            {      
-                //Si salen de la camara y del portal, el enemigo debe tomar la posici�n del clon puesto que sale de la c�mara 
-                _parent.position = _clone.transform.position;
-                _clone.SetActive(false);
-            }
+            //Si salen de la camara y del portal, el enemigo debe tomar la posici�n del clon puesto que sale de la c�mara 
+            _parent.position = _clone.transform.position;
+            _clone.SetActive(false);
+            
         }
     }
 }
