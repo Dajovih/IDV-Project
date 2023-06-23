@@ -60,6 +60,6 @@ public class PlayerNameScreen : MonoBehaviour
     {
         _nextButton.interactable = false;
         AudioManager.Instance.PlaySound2D("ClickSFX");
-        GameEvents.OnPlayerNameChangeEvent?.Invoke(_playerInput.text);
+        GameEvents.OnPlayerNameChangeEvent?.Invoke(_playerInput.text.ToUpper());
     }
 }

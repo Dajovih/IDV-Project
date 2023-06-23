@@ -4,7 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
-{
+{   
+    [SerializeField] private int _deductedPoints = 1000;
     [SerializeField] float _wait;
     [SerializeField] Transform _start;
 
@@ -46,6 +47,7 @@ public class PlayerHealth : MonoBehaviour
     private void OnTakeDamage()
     {
         GameEvents.OnPlayerHealthChangeEvent?.Invoke(PlayerHealth.HealthPoints);
+        GameEvents.OnPointsChangeEvent?.Invoke(-(_deductedPoints));
         GameManager.Instance.playerHealth = PlayerHealth.HealthPoints;
     }
 

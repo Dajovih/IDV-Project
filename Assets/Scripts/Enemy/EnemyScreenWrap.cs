@@ -24,10 +24,12 @@ public class EnemyScreenWrap : MonoBehaviour
         if (collider.gameObject.tag == "LevelDelimiter")
         {  //Si se encuentra dentro de la camara
             _inDelimiter = true;
+            Debug.Log($"Enemy {_parent.name} has enter the delimiter");
         }
 
         if (collider.gameObject.tag == "LeftPortal")
-        {
+        {   
+            Debug.Log($"Enemy {_parent.name} has enter a LeftPortal");
             if (collider.gameObject.name == _lastLeftPortal.name)
             {
                 _clone.SetActive(true);
@@ -42,10 +44,7 @@ public class EnemyScreenWrap : MonoBehaviour
                 nPosition.y = nPosition.y + 2;
                 _clone.transform.position = nPosition;  //Posici�n del clon 20 bloques a la derecha, esto es por la cantidad de cuadrdos
             }
-        }
-            
-        
-             
+        }       
     }
 
     private void OnTriggerExit2D(Collider2D collider)
@@ -53,13 +52,15 @@ public class EnemyScreenWrap : MonoBehaviour
         if (collider.gameObject.tag == "LevelDelimiter")
         {  //Si salen de la camara es necesario guardar un booleano
             _inDelimiter = false;
+            Debug.Log($"Enemy {_parent.name} has exit the delimiter");
         }
 
         if (collider.gameObject.tag == "LeftPortal")
-        {
+        {   
+            Debug.Log($"Enemy {_parent.name} has exit a LeftPortal");
             if (!_inDelimiter)
             {      
-                //Si salen de la camara y del portal, el jugador principal debe tomar la posici�n del clon puesto que sale de la c�mara 
+                //Si salen de la camara y del portal, el enemigo debe tomar la posici�n del clon puesto que sale de la c�mara 
                 _parent.position = _clone.transform.position;
                 _clone.SetActive(false);
             }

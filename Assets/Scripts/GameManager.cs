@@ -192,10 +192,14 @@ public class GameManager : MonoBehaviour
 
     private void OnPointsChange(int points)
     {   
-        if (_score + points > 9999) {
-            _score = 9999;
-        } else {
+        int scoreChange = _score + points;
+
+        if (scoreChange <= 9999 && scoreChange >= 0) {
             _score += points;
+        } else if (scoreChange < 0) {
+            _score = 0;
+        } else {
+            _score = 9999;
         }
         
         GameEvents.OnPlayerScoreChangeEvent?.Invoke(_score);

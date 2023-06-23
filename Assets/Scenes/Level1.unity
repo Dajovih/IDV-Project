@@ -5380,8 +5380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b199800a6ad244a8783d36fcac7435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 4
-  _jumpForce: 7
+  _speed: 5
+  _jumpForce: 9
   _boxDimensions: {x: 0.42, y: 0.03, z: 0}
 --- !u!114 &423055225
 MonoBehaviour:
@@ -10546,7 +10546,7 @@ GameObject:
   - component: {fileID: 939659215}
   - component: {fileID: 939659214}
   - component: {fileID: 939659213}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Player Clone
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -10602,8 +10602,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b199800a6ad244a8783d36fcac7435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 4
-  _jumpForce: 7
+  _speed: 5
+  _jumpForce: 9
   _boxDimensions: {x: 0.42, y: 0.03, z: 0}
 --- !u!114 &939659215
 MonoBehaviour:
