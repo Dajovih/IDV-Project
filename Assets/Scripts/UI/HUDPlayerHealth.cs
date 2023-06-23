@@ -34,12 +34,14 @@ public class HUDPlayerHealth : MonoBehaviour
                 _hearts[i].color = Color.white;
             }
             else
-            {
-                AnimateDamage(_hearts[i]);
+            {   
+                _hearts[i].color = new Color(0.3f, 0.3f, 0.3f, 1);
+                //AnimateDamage(_hearts[i]);
             }
         }
     }
 
+/* 
     private void AnimateDamage(Image heart)
     {
         Color c = new Color(0.3f, 0.3f, 0.3f, 1);
@@ -47,6 +49,7 @@ public class HUDPlayerHealth : MonoBehaviour
         s.Insert(0,heart.DOColor(c, 0.5f).SetEase(Ease.InCubic));
         s.Insert(0, heart.rectTransform.DOScale(Vector3.one * 1.3f, .3f).SetEase(Ease.InCubic));
         s.Append(heart.rectTransform.DOScale(Vector3.one, .4f).SetEase(Ease.OutBounce));
-    } 
+    }
+*/
 
 }

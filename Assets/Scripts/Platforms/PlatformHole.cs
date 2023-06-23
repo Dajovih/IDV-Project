@@ -153,7 +153,5 @@ public class PlatformHole : MonoBehaviour {
     {
         _time = 0;
         _wait = seconds;
-
-
     }
 }
