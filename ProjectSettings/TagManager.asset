@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Clone
   - LevelDelimiter
+  - NewFloor
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Portal
   - Enemy
   - Ground
-  - 
+  - NewFloor
   - 
   - 
   - 
