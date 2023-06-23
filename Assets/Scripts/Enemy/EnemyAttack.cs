@@ -17,9 +17,12 @@ public class EnemyAttack : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            GameEvents.OnEnemyAttack?.Invoke(_waitTime);
+            if (collision.gameObject.transform.position.x > transform.position.x)
+            {
+                transform.localScale = new Vector3(-1,1,1);
+            }
             _animator.SetBool("Attack", true);
-             
+            GameEvents.OnEnemyAttack?.Invoke(_waitTime);
         }
     }
 

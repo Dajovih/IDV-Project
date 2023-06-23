@@ -30,6 +30,7 @@ public class EnemyMovement : MonoBehaviour {
         _time += Time.deltaTime;
         if (_time >= _wait)
         {
+            transform.localScale = Vector3.one;
             _body2D.velocity = new Vector2(-1 * _speed, _body2D.velocity.y);
             _animator.SetFloat("Movement", Math.Abs(_body2D.velocity.x));
         } else
