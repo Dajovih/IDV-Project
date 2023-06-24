@@ -24,4 +24,4 @@ Versión del Editor: 2021.3.18f1
 
 ## Video del gameplay
 
-Drive: TODO
+**Drive:** https://drive.google.com/file/d/1q5hbku0jRTa0EPfoHg9ulJyDdiZJ8FDB/view?usp=sharing
