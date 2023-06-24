@@ -13,7 +13,7 @@ public class PlayerHealth : MonoBehaviour
     private Animator _animator;
     private float _time = 0f;
     private bool _isTeleporting = false;
-    private bool _hit = false;
+    private bool _hit = true;
 
     private void Start()
     {   
@@ -25,17 +25,13 @@ public class PlayerHealth : MonoBehaviour
     {
         _time += Time.deltaTime;
         if (_time >= _wait && _isTeleporting)
-        {
+        {   
+            TakeHit();
+            _animator.SetBool("InAttack", false);
             transform.position = _start.position;
             _isTeleporting = false;
-            if (_hit)
-            {
-                TakeHit();
-                _hit = false;
-            }
-            
+            _hit = true;
         }
-
     }
 
     private void TakeHit(int damage = 1)
@@ -77,20 +73,29 @@ public class PlayerHealth : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {   
-            Debug.Log("Enemy Colission!");
-            AudioManager.Instance.PlaySound2D("AttackSFX");
-            _hit = true;
-            _animator.SetBool("InAttack", true);
-            _time = 0;
-            _isTeleporting = true;
+            if (_hit) {
+                Debug.Log("Enemy Colission!");
+                AudioManager.Instance.PlaySound2D("AttackSFX");
+
+                if (PlayerHealth.HealthPoints > 1) {
+                    _animator.SetBool("InAttack", true);
+                } else {
+                    _animator.SetBool("Death", true);
+                }
+                
+                _time = 0;
+                _isTeleporting = true;
+            }
+
+            _hit = false;
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+/*     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            _animator.SetBool("InAttack", false);
+            
         }
-    }
+    } */
 }
