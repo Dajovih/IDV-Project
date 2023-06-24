@@ -8,8 +8,6 @@ public class EnemyScreenWrap : MonoBehaviour
     [SerializeField] private GameObject _clone; //Es necesario crear un clon para el screen wrap
  
     private Transform _parent;
-    private bool _inDelimiter = true;  //Condici�n necesaria para cuando sale del portal y de la c�mara
-
 
     private void Awake()
     {
@@ -20,12 +18,6 @@ public class EnemyScreenWrap : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider)
     {
         Vector3 nPosition = new Vector3(_parent.position.x, _parent.position.y, 0);
-
-        if (collider.gameObject.tag == "LevelDelimiter")
-        {  //Si se encuentra dentro de la camara
-            _inDelimiter = true;
-            Debug.Log($"Enemy {_parent.name} has enter the delimiter");
-        }
 
         if (collider.gameObject.tag == "LeftPortal")
         {   
@@ -52,6 +44,7 @@ public class EnemyScreenWrap : MonoBehaviour
        
         if (collider.gameObject.tag == "LeftPortal")
         {   
+            Debug.Log($"Enemy {_parent.name} has exit a LeftPortal");
             //Si salen de la camara y del portal, el enemigo debe tomar la posici�n del clon puesto que sale de la c�mara 
             _parent.position = _clone.transform.position;
             _clone.SetActive(false);
