@@ -9,10 +9,16 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float _wait;
     [SerializeField] Transform _start;
 
-    public static int HealthPoints = GameManager.Instance.playerHealth;
+    public static int HealthPoints;
     private Animator _animator;
     private float _time = 0f;
     private bool _isTeleporting = false;
+
+    private void Start()
+    {   
+        PlayerHealth.HealthPoints = GameManager.Instance.playerHealth;
+        _animator = GetComponent<Animator>();
+    }
 
     private void Update()
     {
@@ -22,11 +28,6 @@ public class PlayerHealth : MonoBehaviour
             transform.position = _start.position;
             _isTeleporting = false;
         }
-    }
-
-    private void Start()
-    {
-        _animator = GetComponent<Animator>();
     }
 
     private void TakeHit(int damage = 1)

@@ -11,16 +11,16 @@ Versión del Editor: 2021.3.18f1
 
 ## Paquetes extras
 
-- Audio: FREE Casual Game SFX Pack [https://assetstore.unity.com/packages/audio/sound-fx/free-casual-game-sfx-pack-54116]
-- Music: 8-bit Fantasy & Adventure Music [https://assetstore.unity.com/packages/audio/music/electronic/8-bit-fantasy-adventure-music-211334]
-- GUI: Simple Free Pixel art styled UI pack [https://assetstore.unity.com/packages/2d/gui/icons/simple-free-pixel-art-styled-ui-pack-165012]
-- Assets Pack: Parallax Dusk Mountain Background [https://assetstore.unity.com/packages/2d/textures-materials/tiles/parallax-dusk-mountain-background-53403]
-- Assets Pack: GothicVania Church Pack [https://assetstore.unity.com/packages/2d/characters/gothicvania-church-pack-147117]
-- Assets Pack: Gothicvania Cemetery [https://assetstore.unity.com/packages/2d/characters/gothicvania-cemetery-120509]
-- Assets Pack: Warped Caves [https://assetstore.unity.com/packages/2d/characters/warped-caves-103250]
-- Assets Pack: Medieval Warrior Pack 2 [https://assetstore.unity.com/packages/2d/characters/medieval-warrior-pack-2-174788]
-- Assets Pack: Monsters_Creatures_Fantasy [https://assetstore.unity.com/packages/2d/characters/monsters-creatures-fantasy-167949]
+- **Audio:** FREE Casual Game SFX Pack [https://assetstore.unity.com/packages/audio/sound-fx/free-casual-game-sfx-pack-54116]
+- **Musica:** 8-bit Fantasy & Adventure Music [https://assetstore.unity.com/packages/audio/music/electronic/8-bit-fantasy-adventure-music-211334]
+- **GUI:** Simple Free Pixel art styled UI pack [https://assetstore.unity.com/packages/2d/gui/icons/simple-free-pixel-art-styled-ui-pack-165012]
+- **Assets:** Parallax Dusk Mountain Background [https://assetstore.unity.com/packages/2d/textures-materials/tiles/parallax-dusk-mountain-background-53403]
+- **Assets:** GothicVania Church Pack [https://assetstore.unity.com/packages/2d/characters/gothicvania-church-pack-147117]
+- **Assets:** Gothicvania Cemetery [https://assetstore.unity.com/packages/2d/characters/gothicvania-cemetery-120509]
+- **Assets:** Warped Caves [https://assetstore.unity.com/packages/2d/characters/warped-caves-103250]
+- **Assets:** Medieval Warrior Pack 2 [https://assetstore.unity.com/packages/2d/characters/medieval-warrior-pack-2-174788]
+- **Assets:** Monsters_Creatures_Fantasy [https://assetstore.unity.com/packages/2d/characters/monsters-creatures-fantasy-167949]
 
 ## Video del gameplay
 
-Youtube: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+Drive: TODO
