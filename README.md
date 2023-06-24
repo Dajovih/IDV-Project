@@ -1,5 +1,6 @@
 # Desarrollo de "The Ascension"
-# Juego inspirado en "Jumping Jack - ZX Spectrum"
+
+Juego inspirado en "Jumping Jack - ZX Spectrum"
 
 ## Descripción del juego
 
