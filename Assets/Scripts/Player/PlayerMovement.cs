@@ -96,6 +96,7 @@ public class PlayerMovement : MonoBehaviour {
         _body.velocity = Vector2.zero;
         _direction = 0;
         _animator.SetFloat("Movement", 0);
+        _animator.SetBool("InGround", true);
     }
 
 
