@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour {
     private float _direction;
     private float _time = 0;
     private float _wait = 0;
+    private bool _stop = false;
     
 
 

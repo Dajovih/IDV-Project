@@ -13,6 +13,7 @@ public class PlayerHealth : MonoBehaviour
     private Animator _animator;
     private float _time = 0f;
     private bool _isTeleporting = false;
+    private bool _hit = false;
 
     private void Start()
     {   
@@ -27,7 +28,14 @@ public class PlayerHealth : MonoBehaviour
         {
             transform.position = _start.position;
             _isTeleporting = false;
+            if (_hit)
+            {
+                TakeHit();
+                _hit = false;
+            }
+            
         }
+
     }
 
     private void TakeHit(int damage = 1)
@@ -71,7 +79,7 @@ public class PlayerHealth : MonoBehaviour
         {   
             Debug.Log("Enemy Colission!");
             AudioManager.Instance.PlaySound2D("AttackSFX");
-            TakeHit();
+            _hit = true;
             _animator.SetBool("InAttack", true);
             _time = 0;
             _isTeleporting = true;
